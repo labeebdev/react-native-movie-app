@@ -12,7 +12,7 @@ function CHeader() {
   return (
     <HStack mt="$3" space="sm" h={60}>
       <Box alignItems="start" justifyContent="center" w={100} flex={1}>
-        <Text size="md" bold>
+        <Text size="xl" bold>
           Movie APP
         </Text>
       </Box>
