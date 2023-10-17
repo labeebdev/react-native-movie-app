@@ -2,11 +2,11 @@ import React from 'react';
 import { HStack, Box, Text, Center, Pressable } from '@gluestack-ui/themed';
 import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 
-function Header() {
+function CHeader() {
   return (
     <HStack mt="$3" space="sm" h={60}>
       <Box alignItems="start" justifyContent="center" w={100} flex={1}>
-        <Text size="xl" bold>
+        <Text size="md" bold>
           Movie APP
         </Text>
       </Box>
@@ -19,4 +19,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default CHeader;

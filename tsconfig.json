@@ -4,6 +4,12 @@
   "include": ["./babel.config.js", "./.eslintrc.js", "./src/**/*", "./**/*"],
   "compilerOptions": {
     "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "lib": ["es2015", "es2015.promise", "es2016.array.include", "dom"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": ["jest"],
     "jsx": "react",
     "target": "es2020",
     "module": "commonjs",
@@ -16,9 +22,18 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["./src/*"],
-      "~components/*": ["./src/components/*"],
-      "~screens/*": ["./src/screens/*"]
+      "src/*": ["./src/*"],
+      "assets/*": ["./src/assets/*"],
+      "components/*": ["./src/components/*"],
+      "constants/*": ["./src/constants/*"],
+      "helpers/*": ["./src/helpers/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "navigation/*": ["./src/navigation/*"],
+      "redux/*": ["./src/redux/*"],
+      "screens/*": ["./src/screens/*"],
+      "theme/*": ["./src/theme/*"],
+      "utils/*": ["./src/utils/*"],
     }
-  }
 }
+}
+

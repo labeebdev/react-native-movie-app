@@ -23,5 +23,8 @@ module.exports = {
     '@typescript-eslint/semi': 'error',
     '@typescript-eslint/no-unsafe-assignment': 0,
     '@typescript-eslint/no-unsafe-member-access': 0,
+    'import/extensions': 0,
+    '@typescript-eslint/no-unsafe-call': 0,
+    '@typescript-eslint/no-unsafe-argument': 0,
   },
 };

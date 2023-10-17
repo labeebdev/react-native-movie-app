@@ -1,7 +1,7 @@
 import React from 'react';
-import RootProviders from 'components/Providers/RootProviders';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import RootProviders from 'components/Providers/RootProviders';
 import HomeScreen from 'screens/Home/Home';
 
 export type RootStackParams = {
