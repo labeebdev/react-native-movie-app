@@ -1,11 +1,19 @@
+import { ScrollView } from '@gluestack-ui/themed';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-function RootLayout() {
+function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <View>
-      <Text>Root Layout</Text>
-    </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}>
+      <StatusBar barStyle="default" />
+      <ScrollView bg="$secondary0" flex={1} px="$3">
+        {children}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
