@@ -9,7 +9,8 @@ import {
 } from '@gluestack-ui/themed';
 import React from 'react';
 import ShowingMoviesCarousel from 'components/Carousel/ShowingMoviesCarousel';
-import { NowShowingMoviesResults } from 'src/types/fetchMovies';
+import { NowShowingMoviesResults } from 'src/types/nowShowingMovies';
+import HeaderSection from 'components/Header/HeaderSection';
 
 interface PropsType {
   data: NowShowingMoviesResults[];
@@ -18,20 +19,7 @@ interface PropsType {
 function NowShowingSection({ data }: PropsType) {
   return (
     <View>
-      <HStack>
-        <Box alignItems="start" justifyContent="center" flex={1}>
-          <Heading size="lg">Now Showing</Heading>
-        </Box>
-        <Box>
-          <Button
-            size="xs"
-            variant="outline"
-            action="secondary"
-            borderRadius="$full">
-            <ButtonText>Show All</ButtonText>
-          </Button>
-        </Box>
-      </HStack>
+      <HeaderSection title="Now Showing" onPress={() => {}} />
 
       <View mt="$4">
         <ShowingMoviesCarousel data={data} />
