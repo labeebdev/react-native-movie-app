@@ -1,9 +1,9 @@
 import { PopularMovieResults } from 'src/types/popularMovies';
 import {
-  Box,
   Heading,
   HStack,
   Image,
+  Pressable,
   Text,
   VStack,
 } from '@gluestack-ui/themed';
@@ -14,14 +14,23 @@ import { StarIcon } from 'react-native-heroicons/solid';
 import COLORS from 'helpers/colors';
 import { Genres } from 'src/types/genresMovies';
 import GenreItemCard from 'components/Card/GenreItemCard';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParams } from 'src/App';
+import Rating from 'components/Rating/Rating';
 
 interface PropsType {
   item: PopularMovieResults;
   genres: Genres[];
 }
 
+type NavigationProps = NativeStackNavigationProp<RootStackParams>;
+
 const widthImage = screenWidth / 3.25;
+
 function PopularMoviesItemCard({ item, genres }: PropsType) {
+  const navigation = useNavigation<NavigationProps>();
+
   const genreNames = item?.genre_ids?.map(genreId => {
     const matchedGenre = genres.find(genre => genre.id === genreId);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -29,7 +38,12 @@ function PopularMoviesItemCard({ item, genres }: PropsType) {
   });
 
   return (
-    <Box mb="$5" w={screenWidth}>
+    <Pressable
+      mb="$5"
+      w={screenWidth}
+      onPress={() => {
+        navigation.navigate('MovieDetail', { id: item.id });
+      }}>
       <HStack space="sm">
         <Image
           source={{ uri: image342(item.poster_path) || fallbackMoviePoster }}
@@ -44,16 +58,16 @@ function PopularMoviesItemCard({ item, genres }: PropsType) {
             {item.original_title} ({item.release_date.split('-')[0]})
           </Heading>
 
-          <HStack alignItems="center" space="xs">
-            <StarIcon fill={COLORS.star} size={18} />
-            <Text>{item.vote_average}/10</Text>
-          </HStack>
+          <Rating rating={item.vote_average} />
 
           <HStack space="sm">
             {genreNames
               ?.slice(0, 3)
               .map(genreName => (
-                <GenreItemCard genreName={genreName as string} />
+                <GenreItemCard
+                  key={genreName}
+                  genreName={genreName as string}
+                />
               ))}
           </HStack>
 
@@ -64,7 +78,7 @@ function PopularMoviesItemCard({ item, genres }: PropsType) {
           </Text>
         </VStack>
       </HStack>
-    </Box>
+    </Pressable>
   );
 }
 

@@ -27,5 +27,6 @@ module.exports = {
     '@typescript-eslint/no-unsafe-call': 0,
     '@typescript-eslint/no-unsafe-argument': 0,
     '@typescript-eslint/no-floating-promises': 0,
+    '@typescript-eslint/no-redundant-type-constituents': 0,
   },
 };

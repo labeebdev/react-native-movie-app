@@ -3,17 +3,17 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Carousel from 'react-native-snap-carousel';
 import { RootStackParams } from 'src/App';
-import { NowShowingMoviesResults } from 'src/types/nowShowingMovies';
 import NowShowingItemCard from 'components/Card/NowShowingItemCard';
 import { screenWidth } from 'helpers/CONST';
+import { SimilarMoviesResult } from 'src/types/similarMovies';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParams>;
 
 interface PropsType {
-  data: NowShowingMoviesResults[];
+  data: SimilarMoviesResult[];
 }
 
-function ShowingMoviesCarousel({ data }: PropsType) {
+function SimilarMoviesCarousel({ data }: PropsType) {
   const navigation = useNavigation<NavigationProps>();
 
   return (
@@ -23,7 +23,7 @@ function ShowingMoviesCarousel({ data }: PropsType) {
       renderItem={({ item }) => (
         <NowShowingItemCard
           handleClick={() => {
-            navigation.navigate('MovieDetail', { id: item.id });
+            navigation.push('MovieDetail', { id: item.id });
           }}
           item={item}
         />
@@ -40,4 +40,4 @@ function ShowingMoviesCarousel({ data }: PropsType) {
   );
 }
 
-export default ShowingMoviesCarousel;
+export default SimilarMoviesCarousel;

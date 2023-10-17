@@ -1,17 +1,9 @@
-import {
-  Box,
-  Heading,
-  HStack,
-  Image,
-  Pressable,
-  Text,
-} from '@gluestack-ui/themed';
+import { Box, Heading, Image, Pressable } from '@gluestack-ui/themed';
 import { fallbackMoviePoster, image500 } from 'src/api/base';
 import React from 'react';
-import { NowShowingMoviesResults } from 'src/types/fetchMovies';
+import { NowShowingMoviesResults } from 'src/types/nowShowingMovies';
 import { screenHeight, screenWidth } from 'helpers/CONST';
-import { StarIcon } from 'react-native-heroicons/solid';
-import COLORS from 'helpers/colors';
+import Rating from 'components/Rating/Rating';
 
 interface MovieCardProps {
   item: NowShowingMoviesResults;
@@ -32,10 +24,7 @@ function NowShowingItemCard({ item, handleClick }: MovieCardProps) {
       />
       <Box ml="$2" mt="$2">
         <Heading size="md">{item.title}</Heading>
-        <HStack alignItems="center" space="xs">
-          <StarIcon fill={COLORS.star} size={18} />
-          <Text>{item.vote_average}/10</Text>
-        </HStack>
+        <Rating rating={item.vote_average} />
       </Box>
     </Pressable>
   );

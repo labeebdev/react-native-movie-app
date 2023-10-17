@@ -3,36 +3,37 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Carousel from 'react-native-snap-carousel';
 import { RootStackParams } from 'src/App';
-import { NowShowingMoviesResults } from 'src/types/nowShowingMovies';
-import NowShowingItemCard from 'components/Card/NowShowingItemCard';
 import { screenWidth } from 'helpers/CONST';
+
+import { CastEntity } from 'src/types/movieCredit';
+import CastItemCard from 'components/Card/CastItemCard';
 
 type NavigationProps = NativeStackNavigationProp<RootStackParams>;
 
 interface PropsType {
-  data: NowShowingMoviesResults[];
+  data: CastEntity[];
 }
 
-function ShowingMoviesCarousel({ data }: PropsType) {
+function CastMovieCarousel({ data }: PropsType) {
   const navigation = useNavigation<NavigationProps>();
 
   return (
     <Carousel
       keyExtractor={item => String(item.id)}
-      data={data.slice(0, 8)}
+      data={data.slice(0, 12)}
       renderItem={({ item }) => (
-        <NowShowingItemCard
+        <CastItemCard
           handleClick={() => {
-            navigation.navigate('MovieDetail', { id: item.id });
+            // navigation.navigate('MovieDetail', { id: item.id });
           }}
           item={item}
         />
       )}
       activeSlideAlignment="start"
       firstItem={0}
-      inactiveSlideOpacity={0.6}
+      inactiveSlideOpacity={1}
       sliderWidth={screenWidth}
-      itemWidth={screenWidth / 2}
+      itemWidth={screenWidth / 4.1}
       disableIntervalMomentum
       enableMomentum
       decelerationRate="fast"
@@ -40,4 +41,4 @@ function ShowingMoviesCarousel({ data }: PropsType) {
   );
 }
 
-export default ShowingMoviesCarousel;
+export default CastMovieCarousel;
