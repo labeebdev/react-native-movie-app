@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RootProviders from 'components/Providers/RootProviders';
 import HomeScreen from 'screens/Home/Home';
 import MovieDetail from 'screens/MovieDetail/MovieDetail';
+import SearchScreen from 'screens/Search/Search';
 
 export type RootStackParams = {
   Home: undefined;
@@ -25,6 +26,7 @@ export default function App() {
           }}>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="MovieDetail" component={MovieDetail} />
+          <Stack.Screen name="Search" component={SearchScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </RootProviders>

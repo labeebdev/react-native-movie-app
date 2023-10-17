@@ -16,7 +16,7 @@ function RootLayout({ children, fluid = false }: PropsType) {
         flex: 1,
       }}>
       <StatusBar barStyle="default" />
-      <ScrollView bg="$secondary0" flex={1} px={fluid ? '$0' : '$3'}>
+      <ScrollView bg="$secondary50" flex={1} px={fluid ? '$0' : '$3'}>
         {children}
       </ScrollView>
     </SafeAreaView>

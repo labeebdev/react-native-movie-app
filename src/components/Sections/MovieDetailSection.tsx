@@ -26,7 +26,7 @@ function MovieDetailSection({ detailMovie, cast, similarMovies }: PropsType) {
         alignItems="start"
         justifyContent="space-between">
         <Heading size="xl" w="85%">
-          {detailMovie?.title} - ({detailMovie?.id})
+          {detailMovie?.title}
         </Heading>
         <BookmarkIcon
           color="black"

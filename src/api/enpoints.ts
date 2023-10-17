@@ -11,6 +11,6 @@ export const movieDetailsEndpoint = id =>
   `${apiBaseUrl}/movie/${id}?api_key=${TMDB_KEY}`;
 export const movieCreditsEndpoint = id =>
   `${apiBaseUrl}/movie/${id}/credits?api_key=${TMDB_KEY}`;
-
 export const similarMoviesEndpoint = id =>
   `${apiBaseUrl}/movie/${id}/similar?api_key=${TMDB_KEY}`;
+export const searchMoviesEndpoint = `${apiBaseUrl}/search/movie?api_key=${TMDB_KEY}`;

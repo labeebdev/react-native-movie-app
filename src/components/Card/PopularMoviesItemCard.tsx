@@ -63,11 +63,8 @@ function PopularMoviesItemCard({ item, genres }: PropsType) {
           <HStack space="sm">
             {genreNames
               ?.slice(0, 3)
-              .map(genreName => (
-                <GenreItemCard
-                  key={genreName}
-                  genreName={genreName as string}
-                />
+              .map((genreName, idx) => (
+                <GenreItemCard key={idx} genreName={genreName as string} />
               ))}
           </HStack>
 

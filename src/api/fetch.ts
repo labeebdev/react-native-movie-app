@@ -5,6 +5,7 @@ import {
   movieDetailsEndpoint,
   nowShowingMoviesEndpoint,
   popularMoviesEndpoint,
+  searchMoviesEndpoint,
   similarMoviesEndpoint,
 } from './enpoints';
 
@@ -20,3 +21,6 @@ export const fetchMovieCredist = (movieId: number) =>
   apiCall(movieCreditsEndpoint(movieId));
 export const fetchSimilarMovies = (movieId: number) =>
   apiCall(similarMoviesEndpoint(movieId));
+
+// search screen apis
+export const searchMovies = params => apiCall(searchMoviesEndpoint, params);
