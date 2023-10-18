@@ -1,23 +1,30 @@
 import React from 'react';
-import { HStack, Box, Text, Center, Pressable } from '@gluestack-ui/themed';
+import { Box, Center, HStack, Pressable, Text } from '@gluestack-ui/themed';
 import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParams } from 'src/App';
+import { DrawerStackParams, RootStackParams } from 'src/App';
 import { useNavigation } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { Bars3BottomLeftIcon } from 'react-native-heroicons/solid';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-type NavigationProps = NativeStackNavigationProp<RootStackParams>;
+type DrawerNavigation = DrawerNavigationProp<DrawerStackParams>;
+type StackNavigation = NativeStackNavigationProp<RootStackParams>;
 
 function CHeader() {
-  const navigation = useNavigation<NavigationProps>();
+  const drawer = useNavigation<DrawerNavigation>();
+  const stack = useNavigation<StackNavigation>();
   return (
     <HStack mt="$3" space="sm" h={60}>
-      <Box alignItems="start" justifyContent="center" w={100} flex={1}>
+      <HStack alignItems="center" space="sm" flex={1}>
+        <Pressable onPress={() => drawer.openDrawer()}>
+          <Bars3BottomLeftIcon color="black" size={25} />
+        </Pressable>
         <Text size="xl" bold>
           Movie APP
         </Text>
-      </Box>
+      </HStack>
       <Center w={50}>
-        <Pressable onPress={() => navigation.navigate('Search')}>
+        <Pressable onPress={() => stack.navigate('Search')}>
           <MagnifyingGlassIcon color="black" size={30} />
         </Pressable>
       </Center>

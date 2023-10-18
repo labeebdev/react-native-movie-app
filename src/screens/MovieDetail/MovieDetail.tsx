@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import RootLayout from 'components/Layout/RootLayout';
 import { Text } from '@gluestack-ui/themed';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -16,6 +16,7 @@ import {
   SimilarMoviesResponse,
   SimilarMoviesResult,
 } from 'src/types/similarMovies';
+import { useFocusEffect } from '@react-navigation/core';
 
 type NavigationProps = NativeStackScreenProps<RootStackParams, 'MovieDetail'>;
 
@@ -50,11 +51,13 @@ function MovieDetail({ route, navigation }: NavigationProps) {
     }
   };
 
-  useEffect(() => {
-    getMovieDetails();
-    getMovieCredits();
-    getSimilarMovies();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      getMovieDetails();
+      getMovieCredits();
+      getSimilarMovies();
+    }, [route.params.id]),
+  );
 
   return (
     <RootLayout fluid>

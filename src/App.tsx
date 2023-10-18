@@ -1,14 +1,31 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RootProviders from 'components/Providers/RootProviders';
 import HomeScreen from 'screens/Home/Home';
 import MovieDetail from 'screens/MovieDetail/MovieDetail';
 import SearchScreen from 'screens/Search/Search';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import BookmarkScreen from 'screens/Bookmark/Bookmark';
+import {
+  HomeIcon as HomeIconOutline,
+  BookmarkIcon as BookmarkIconOutline,
+} from 'react-native-heroicons/outline';
+import {
+  HomeIcon as HomeIconSolid,
+  BookmarkIcon as BookmarkIconSolid,
+} from 'react-native-heroicons/solid';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-export type TabStackParams = {
-  HomeStack: RootStackParams;
+export type DrawerStackParams = {
+  HomeStack: NavigatorScreenParams<RootStackParams>;
+  Bookmark: undefined;
+  MovieDetail: {
+    id: number;
+  };
 };
 
 export type RootStackParams = {
@@ -21,31 +38,56 @@ export type RootStackParams = {
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
-function HomeStackNavigation() {
+const Drawer = createDrawerNavigator<DrawerStackParams>();
+function DrawerStackNavigation() {
   return (
-    <Stack.Navigator
-      initialRouteName="Home"
+    <Drawer.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="MovieDetail" component={MovieDetail} />
-      <Stack.Screen name="Search" component={SearchScreen} />
-    </Stack.Navigator>
+      <Drawer.Screen
+        name="HomeStack"
+        component={HomeScreen}
+        options={{
+          drawerIcon: ({ color, size, focused }) =>
+            focused ? (
+              <HomeIconSolid color={color} size={size * 1.3} />
+            ) : (
+              <HomeIconOutline color={color} size={size * 1.3} />
+            ),
+          drawerLabel: 'Home',
+        }}
+      />
+      <Drawer.Screen
+        name="Bookmark"
+        component={BookmarkScreen}
+        options={{
+          drawerIcon: ({ color, size, focused }) =>
+            focused ? (
+              <BookmarkIconSolid color={color} size={size * 1.3} />
+            ) : (
+              <BookmarkIconOutline color={color} size={size * 1.3} />
+            ),
+          drawerLabel: 'Bookmark',
+        }}
+      />
+    </Drawer.Navigator>
   );
 }
 
-const Tab = createBottomTabNavigator<TabStackParams>();
 export default function App() {
   return (
     <RootProviders>
       <NavigationContainer>
-        <Tab.Navigator
+        <Stack.Navigator
+          initialRouteName="Home"
           screenOptions={{
             headerShown: false,
           }}>
-          <Tab.Screen name="HomeStack" component={HomeStackNavigation} />
-        </Tab.Navigator>
+          <Stack.Screen name="Home" component={DrawerStackNavigation} />
+          <Stack.Screen name="MovieDetail" component={MovieDetail} />
+          <Stack.Screen name="Search" component={SearchScreen} />
+        </Stack.Navigator>
       </NavigationContainer>
     </RootProviders>
   );
