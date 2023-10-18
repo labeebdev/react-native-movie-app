@@ -1,6 +1,6 @@
 import React from 'react';
 import RootLayout from 'components/Layout/RootLayout';
-import { Box, Heading, HStack, Pressable } from '@gluestack-ui/themed';
+import { Heading, HStack, Pressable } from '@gluestack-ui/themed';
 import { getBookmarkMovies } from 'redux/bookmarkSlice';
 import { useAppSelector } from 'redux/hooks';
 import { screenWidth } from 'helpers/CONST';

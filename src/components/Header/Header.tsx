@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Center, HStack, Pressable, Text } from '@gluestack-ui/themed';
+import { Center, HStack, Pressable, Text } from '@gluestack-ui/themed';
 import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import { DrawerStackParams, RootStackParams } from 'src/App';
 import { useNavigation } from '@react-navigation/native';
