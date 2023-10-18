@@ -10,8 +10,6 @@ import {
 import React from 'react';
 import { fallbackMoviePoster, image342 } from 'src/api/base';
 import { screenWidth } from 'helpers/CONST';
-import { StarIcon } from 'react-native-heroicons/solid';
-import COLORS from 'helpers/colors';
 import { Genres } from 'src/types/genresMovies';
 import GenreItemCard from 'components/Card/GenreItemCard';
 import { useNavigation } from '@react-navigation/native';

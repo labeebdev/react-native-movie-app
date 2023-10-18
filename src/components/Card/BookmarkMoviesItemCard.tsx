@@ -15,7 +15,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Rating from 'components/Rating/Rating';
 import { BookmarkPayload } from 'redux/bookmarkSlice';
 import { GenresEntity } from 'src/types/detailsMovie';
-import { DrawerStackParams, RootStackParams } from 'src/App';
+import { RootStackParams } from 'src/App';
 
 interface PropsType {
   item: BookmarkPayload;

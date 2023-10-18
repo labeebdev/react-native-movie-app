@@ -11,12 +11,12 @@ import MovieDetail from 'screens/MovieDetail/MovieDetail';
 import SearchScreen from 'screens/Search/Search';
 import BookmarkScreen from 'screens/Bookmark/Bookmark';
 import {
-  HomeIcon as HomeIconOutline,
   BookmarkIcon as BookmarkIconOutline,
+  HomeIcon as HomeIconOutline,
 } from 'react-native-heroicons/outline';
 import {
-  HomeIcon as HomeIconSolid,
   BookmarkIcon as BookmarkIconSolid,
+  HomeIcon as HomeIconSolid,
 } from 'react-native-heroicons/solid';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import ShowAllNowScreen from 'screens/ShowAllNow/ShowAllNow';

@@ -1,22 +1,15 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Carousel from 'react-native-snap-carousel';
-import { RootStackParams } from 'src/App';
 import { screenWidth } from 'helpers/CONST';
 
 import { CastEntity } from 'src/types/movieCredit';
 import CastItemCard from 'components/Card/CastItemCard';
-
-type NavigationProps = NativeStackNavigationProp<RootStackParams>;
 
 interface PropsType {
   data: CastEntity[];
 }
 
 function CastMovieCarousel({ data }: PropsType) {
-  const navigation = useNavigation<NavigationProps>();
-
   return (
     <Carousel
       keyExtractor={item => String(item.id)}
