@@ -1,36 +1,34 @@
 import { View } from '@gluestack-ui/themed';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { PopularMovieResults } from 'src/types/popularMovies';
 import { FlatList } from 'react-native';
 import HeaderSection from 'components/Header/HeaderSection';
 import PopularMoviesItemCard from 'components/Card/PopularMoviesItemCard';
 import { screenWidth } from 'helpers/CONST';
-import { Genres, GenresMoviesResponse } from 'src/types/genresMovies';
-import { fetchGenresMovies } from 'src/api/fetch';
+import { useAppSelector } from 'redux/hooks';
+import { getGenre } from 'redux/genreSlice';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParams } from 'src/App';
 
 interface PropsType {
   data: PopularMovieResults[];
 }
 
 function PopularMoviesSection({ data }: PropsType) {
-  const [genres, setGenres] = useState<Genres[]>([]);
-  const getGenresMovies = async () => {
-    const result: GenresMoviesResponse = await fetchGenresMovies();
-
-    if (result && result.genres) {
-      setGenres(result.genres);
-    }
-  };
-
-  useEffect(() => {
-    getGenresMovies();
-  }, []);
+  const genres = useAppSelector(getGenre);
+  const stack = useNavigation<NativeStackNavigationProp<RootStackParams>>();
 
   return (
     <View>
-      <HeaderSection title="Popular Movies" onPress={() => {}} />
+      <HeaderSection
+        title="Popular Movies"
+        onPress={() => {
+          stack.navigate('ShowAllPopular');
+        }}
+      />
       <FlatList
-        data={data.slice(0, 12)}
+        data={data.slice(0, 5)}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <PopularMoviesItemCard item={item} genres={genres} />

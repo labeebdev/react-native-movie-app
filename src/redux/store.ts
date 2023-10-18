@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import bookmarkReducers from './bookmarkSlice';
+import genreReducers from './genreSlice';
 
 export const store = configureStore({
   reducer: {
     bookmark: bookmarkReducers,
+    genre: genreReducers,
   },
 });
 

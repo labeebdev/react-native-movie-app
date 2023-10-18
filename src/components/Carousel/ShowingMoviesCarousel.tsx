@@ -19,7 +19,7 @@ function ShowingMoviesCarousel({ data }: PropsType) {
   return (
     <Carousel
       keyExtractor={item => String(item.id)}
-      data={data.slice(0, 8)}
+      data={data.slice(0, 5)}
       renderItem={({ item }) => (
         <NowShowingItemCard
           handleClick={() => {

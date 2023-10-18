@@ -19,6 +19,8 @@ import {
   BookmarkIcon as BookmarkIconSolid,
 } from 'react-native-heroicons/solid';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import ShowAllNowScreen from 'screens/ShowAllNow/ShowAllNow';
+import ShowAllPopularScreen from 'screens/ShowAllPopular/ShowAllPopular';
 
 export type DrawerStackParams = {
   HomeStack: NavigatorScreenParams<RootStackParams>;
@@ -31,6 +33,8 @@ export type DrawerStackParams = {
 export type RootStackParams = {
   Home: undefined;
   Search: undefined;
+  ShowAllNow: undefined;
+  ShowAllPopular: undefined;
   MovieDetail: {
     id: number;
   };
@@ -87,6 +91,11 @@ export default function App() {
           <Stack.Screen name="Home" component={DrawerStackNavigation} />
           <Stack.Screen name="MovieDetail" component={MovieDetail} />
           <Stack.Screen name="Search" component={SearchScreen} />
+          <Stack.Screen name="ShowAllNow" component={ShowAllNowScreen} />
+          <Stack.Screen
+            name="ShowAllPopular"
+            component={ShowAllPopularScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </RootProviders>

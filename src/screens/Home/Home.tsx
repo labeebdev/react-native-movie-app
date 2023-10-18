@@ -3,7 +3,11 @@ import {
   NowShowingMoviesResponse,
   NowShowingMoviesResults,
 } from 'src/types/nowShowingMovies';
-import { fetchNowShowingMovies, fetchPopularMovies } from 'src/api/fetch';
+import {
+  fetchGenresMovies,
+  fetchNowShowingMovies,
+  fetchPopularMovies,
+} from 'src/api/fetch';
 import RootLayout from 'components/Layout/RootLayout';
 import CHeader from 'components/Header/Header';
 import NowShowingSection from 'components/Sections/NowShowingSection';
@@ -13,6 +17,9 @@ import {
   PopularMovieResults,
   PopularMoviesResponse,
 } from 'src/types/popularMovies';
+import { GenresMoviesResponse } from 'src/types/genresMovies';
+import { useAppDispatch } from 'redux/hooks';
+import { addGenre } from 'redux/genreSlice';
 
 function HomeScreen() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -21,6 +28,7 @@ function HomeScreen() {
   );
   const [popularMovies, setPopularMovies] = useState<PopularMovieResults[]>([]);
 
+  const dispatch = useAppDispatch();
   const getNowShowingMovies = async () => {
     const data: NowShowingMoviesResponse = await fetchNowShowingMovies();
     if (data && data.results) {
@@ -35,9 +43,18 @@ function HomeScreen() {
     }
   };
 
+  const getGenresMovies = async () => {
+    const result: GenresMoviesResponse = await fetchGenresMovies();
+
+    if (result && result.genres) {
+      dispatch(addGenre(result.genres));
+    }
+  };
+
   useEffect(() => {
     getNowShowingMovies();
     getPopularMovies();
+    getGenresMovies();
   }, []);
 
   return (
